@@ -1,0 +1,45 @@
+# GroupDocs.Markdown.Mcp.Tests
+
+Integration tests and deployment how-to guides for GroupDocs.Markdown.Mcp — the MCP server that exposes GroupDocs.Markdown for .NET to AI agents (Claude, Cursor, VS Code / GitHub Copilot, and other MCP-compatible clients) for converting documents to Markdown.
+
+This repo validates the **published NuGet artifact** end-to-end and doubles as a reference for using it from every supported channel.
+
+## Primary repository
+
+- MCP server source + package: https://github.com/groupdocs-markdown/GroupDocs.Markdown.Mcp
+- NuGet package: https://www.nuget.org/packages/GroupDocs.Markdown.Mcp
+- Docker images: ghcr.io/groupdocs-markdown/markdown-net-mcp and docker.io/groupdocs/markdown-net-mcp
+
+## Deployment channels covered by how-to guides
+
+- how-to/01-install-from-nuget.md — dnx (recommended) + global dotnet tool
+- how-to/02-run-via-docker.md — container image + docker-compose
+- how-to/03-verify-mcp-registry.md — MCP registry discovery and NuGet.org auto-generated mcp.json
+- how-to/04-use-with-claude-desktop.md — Claude Desktop stdio config
+- how-to/05-use-with-vscode-copilot.md — VS Code / GitHub Copilot config with prompt-string inputs
+- how-to/06-run-integration-tests.md — run this repo's test suite locally and in CI
+
+## MCP tools exposed by the server
+
+- convert_to_markdown — convert a document (PDF, DOCX, XLSX, EPUB, MOBI, …) to clean, structured Markdown; images embed as base64 by default
+- get_document_info — return file format, page count, title, author, and encryption flag as JSON
+
+Reverse Markdown → document composition (compose_from_markdown) is NOT exposed — `MarkdownConverter.FromMarkdownString` throws NotImplementedException in GroupDocs.Markdown 26.3.0. Use the GroupDocs.Conversion MCP for Markdown → DOCX / PDF / HTML in the interim.
+
+## Environment variables
+
+- GROUPDOCS_MCP_STORAGE_PATH — base folder for input + output (defaults to current working directory)
+- GROUPDOCS_MCP_OUTPUT_PATH — optional, routes output files to a separate folder
+- GROUPDOCS_LICENSE_PATH — path to GroupDocs.Total.lic; omit for evaluation mode (converted Markdown may be limited / carry an evaluation notice)
+
+## Key facts for AI agents
+
+- Testing the shipped NuGet, not the source. No project reference to the server.
+- Tool names on the wire are snake_case: convert_to_markdown, get_document_info.
+- The suite passes fully unlicensed — GroupDocs.Markdown's Convert() succeeds in evaluation mode (limited output, no exception). A license only removes the limits.
+- Real document fixtures live in Files/ (from the upstream examples repo). No synthetic fixtures.
+- Target framework is net10.0 only. Requires .NET 10 SDK for dnx.
+
+## License
+
+MIT — see LICENSE
