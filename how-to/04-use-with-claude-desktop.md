@@ -28,7 +28,7 @@ Create the file if it doesn't exist.
     "groupdocs-markdown": {
       "type": "stdio",
       "command": "dnx",
-      "args": ["GroupDocs.Markdown.Mcp@26.5.0", "--yes"],
+      "args": ["GroupDocs.Markdown.Mcp@26.7.0", "--yes"],
       "env": {
         "GROUPDOCS_MCP_STORAGE_PATH": "/Users/you/Documents"
       }
@@ -77,7 +77,7 @@ where dnx.cmd        # Windows (from cmd)
       "args": [
         "run", "--rm", "-i",
         "-v", "/Users/you/Documents:/data",
-        "ghcr.io/groupdocs-markdown/markdown-net-mcp:26.5.0"
+        "ghcr.io/groupdocs-markdown/markdown-net-mcp:26.7.0"
       ]
     }
   }
