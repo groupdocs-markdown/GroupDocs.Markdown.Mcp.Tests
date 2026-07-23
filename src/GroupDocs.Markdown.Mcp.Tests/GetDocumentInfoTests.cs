@@ -7,8 +7,7 @@ namespace GroupDocs.Markdown.Mcp.IntegrationTests;
 /// GetDocumentInfo returns a JSON object — { fileName, fileFormat, pageCount,
 /// title, author, isEncrypted }. It only inspects the document (no conversion),
 /// so it runs cleanly unlicensed.
-[Collection(McpServerCollection.Name)]
-public class GetDocumentInfoTests
+public class GetDocumentInfoTests : IClassFixture<McpServerFixture>
 {
     private readonly McpServerFixture _fixture;
     private readonly ITestOutputHelper _output;
