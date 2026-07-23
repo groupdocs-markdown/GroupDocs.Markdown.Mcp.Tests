@@ -9,8 +9,7 @@ namespace GroupDocs.Markdown.Mcp.IntegrationTests;
 /// evaluation notice, but the call does not throw. Tests therefore assert the
 /// response is not a tool-level failure (the tool prefixes real failures with
 /// "Conversion to Markdown failed for") rather than asserting exact content.
-[Collection(McpServerCollection.Name)]
-public class ConvertToMarkdownTests
+public class ConvertToMarkdownTests : IClassFixture<McpServerFixture>
 {
     private const string FailurePrefix = "Conversion to Markdown failed for";
 
