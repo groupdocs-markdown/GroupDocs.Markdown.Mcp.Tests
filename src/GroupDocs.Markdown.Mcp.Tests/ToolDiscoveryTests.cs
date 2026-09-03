@@ -35,7 +35,9 @@ public class ToolDiscoveryTests : IClassFixture<McpServerFixture>
         foreach (var tool in catalog.All)
             _output.WriteLine($"tool: {tool.Name} — {tool.Description}");
 
-        Assert.Equal(2, catalog.All.Count);
+        // 2 product tools plus get_license_status, which GroupDocs.Mcp.Core
+        // registers on every server from 26.9.0.
+        Assert.Equal(3, catalog.All.Count);
         Assert.NotNull(catalog.ConvertToMarkdown);
         Assert.NotNull(catalog.GetDocumentInfo);
     }
